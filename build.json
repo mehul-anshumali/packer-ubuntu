@@ -1,39 +1,32 @@
 {
   "builders": [
     {
-      "name": "ubuntu-2004",
-      "type": "virtualbox-iso",
-      "guest_os_type": "ubuntu-64",
-      "headless": false,
-
-      "iso_url": "http://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso",
-      "iso_checksum": "caf3fd69c77c439f162e2ba6040e9c320c4ff0d69aad1340a514319a9264df9f",
-      "iso_checksum_type": "sha256",
-
-      "ssh_username": "ubuntu",
-      "ssh_password": "ubuntu",
-      "ssh_handshake_attempts": "20",
-
-      "http_directory": "http",
-
-      "memory": 1024,
-
-      "boot_wait": "5s",
       "boot_command": [
         "<enter><enter><f6><esc><wait> ",
         "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
         "<enter>"
       ],
+      "boot_wait": "5s",
+      "cpus": "2",
       "disk_size": "65536",
+      "guest_os_type": "ubuntu-64",
       "hard_drive_interface": "sata",
-      "cpus": "2"
+      "headless": false,
+      "http_directory": "http",
+      "iso_checksum": "d1f2bf834bbe9bb43faf16f9be992a6f3935e65be0edece1dee2aa6eb1767423",
+      "iso_url": "https://releases.ubuntu.com/20.04/ubuntu-20.04.2-live-server-amd64.iso",
+      "memory": 1024,
+      "name": "ubuntu-2004",
+      "ssh_handshake_attempts": "20",
+      "ssh_password": "ubuntu",
+      "ssh_username": "ubuntu",
+      "type": "virtualbox-iso"
     }
   ],
-
   "provisioners": [
     {
-      "type": "shell",
-      "inline": ["ls /"]
+      "inline": ["ls /"],
+      "type": "shell"
     }
   ]
 }
